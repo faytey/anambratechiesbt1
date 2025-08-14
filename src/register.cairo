@@ -47,15 +47,15 @@ pub mod Register {
 
         fn get_all(self: @ContractState) -> Array<RegisterStruct> {
             let mut reg_array: Array<RegisterStruct> = ArrayTrait::new();
-            let mut counter = 0;
-            let total_id = self.id.read();
+            let mut counter = 1;
+            let total_id = self.id.read() + 1;
 
-            while counter <= total_id {
+            while counter < total_id {
                 let reglist = self.list.entry(counter).read();
                 reg_array.append(reglist);
+                counter += 1;
             };
 
-            counter += 1;
             reg_array
         }
     }
