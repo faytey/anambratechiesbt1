@@ -21,14 +21,14 @@ pub mod Register {
         list: Map<u32, RegisterStruct>,
         id: u32,
     }
-
+// struct to handle student details
     #[derive(Drop, Serde, starknet::Store)]
     pub struct RegisterStruct {
         _name: felt252,
         _address: ContractAddress,
         _id: u32,
     }
-
+// exposing functions for external use and implementing the traits
     #[abi(embed_v0)]
     impl RegisterImpl of super::IRegisterTrait<ContractState> {
         fn register(ref self: ContractState, name: felt252, address: ContractAddress) -> bool {
